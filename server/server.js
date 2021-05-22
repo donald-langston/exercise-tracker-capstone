@@ -62,7 +62,11 @@ passport.deserializeUser(function(user, done) {
     done(null, user);
 });
 
-app.use(cors());
+let corsOptions = {
+    origin: "https://exercise-tracker-capstone.vercel.app/"
+}
+
+app.use(cors(corsOptions));
 
 //call this middleware function to user firstname and lastname from req.body
 //which is the post request after form is submitted
