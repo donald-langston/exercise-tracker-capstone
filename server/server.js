@@ -63,7 +63,7 @@ passport.deserializeUser(function(user, done) {
 });
 
 let corsOptions = {
-    origin: "https://exercise-tracker-capstone.vercel.app/"
+    origin: "https://exercise-tracker-capstone.vercel.app"
 }
 
 app.use(cors(corsOptions));
