@@ -15,6 +15,7 @@ let lastName = "";
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
 app.use(session({
     secret: 'abcdefg123456',
     resave: false,
@@ -61,12 +62,6 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function(user, done) {
     done(null, user);
 });
-
-let corsOptions = {
-    origin: "https://exercise-tracker-capstone.vercel.app"
-}
-
-app.use(cors(corsOptions));
 
 //call this middleware function to user firstname and lastname from req.body
 //which is the post request after form is submitted
