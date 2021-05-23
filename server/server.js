@@ -21,7 +21,7 @@ const allowedOrigins = ["https://exercise-tracker-capstone.vercel.app"];
 
 app.use(cors({
     origin: allowedOrigins,
-    allowedHeaders: "application/json",
+    allowedHeaders: "Content-Type",
     optionsSuccessStatus: 200 
 }));
 
