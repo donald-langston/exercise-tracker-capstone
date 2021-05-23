@@ -90,7 +90,7 @@ app.post('/login', getFirstAndLastName, function(req, res, next) {
         if (!user) { return res.status(401).json({message: 'invalid username/password'}); }
         req.logIn(user, function(err) {
           if (err) { return next(err); }
-          res.header("Access-Control-Allow-Origin", "https://exercise-tracker-capstone.vercel.app")
+          res.set("Access-Control-Allow-Origin", "https://exercise-tracker-capstone.vercel.app")
           return res.json({
               first: user.firstName,
               last: user.lastName,
