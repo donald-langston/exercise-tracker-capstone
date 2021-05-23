@@ -84,12 +84,13 @@ let getFirstAndLastName = function(req, res, next) {
 
 app.options('/login', cors(corsOptions));
 
-app.post('/login', cors(corsOptions), getFirstAndLastName, function(req, res, next) {
+app.post('/login', getFirstAndLastName, function(req, res, next) {
     passport.authenticate('local', function(err, user, info) {
         if (err) { return next(err); }
         if (!user) { return res.status(401).json({message: 'invalid username/password'}); }
         req.logIn(user, function(err) {
           if (err) { return next(err); }
+          res.header("Access-Control-Allow-Origin", "https://exercise-tracker-capstone.vercel.app")
           return res.json({
               first: user.firstName,
               last: user.lastName,
