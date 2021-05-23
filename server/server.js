@@ -13,8 +13,10 @@ const cors = require('cors');
 let firstName = "";
 let lastName = "";
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
 app.use(cors());
 app.use(session({
     secret: 'abcdefg123456',
