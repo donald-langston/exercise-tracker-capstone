@@ -17,19 +17,15 @@ let lastName = "";
 // app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin","*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header("Access-Control-Request-Method", "GET, POST");
-    next();
-  });
-// const allowedOrigins = ["https://exercise-tracker-capstone.vercel.app"];
 
-// app.use(cors({
-//     origin: allowedOrigins,
-//     allowedHeaders: "content-type",
-//     optionsSuccessStatus: 200 
-// }));
+const allowedOrigins = ["https://exercise-tracker-capstone.vercel.app"];
+
+const corsOptions = {
+    origin: allowedOrigins,
+    allowedHeaders: "content-type",
+    optionsSuccessStatus: 200 
+};
+
 
 app.use(session({
     secret: 'abcdefg123456',
@@ -86,7 +82,9 @@ let getFirstAndLastName = function(req, res, next) {
     next();
 }
 
-app.post('/login', getFirstAndLastName, function(req, res, next) {
+app.options('/login', cors(corsOptions));
+
+app.post('/login', cors(corsOptions), getFirstAndLastName, function(req, res, next) {
     passport.authenticate('local', function(err, user, info) {
         if (err) { return next(err); }
         if (!user) { return res.status(401).json({message: 'invalid username/password'}); }
