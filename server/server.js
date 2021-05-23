@@ -17,7 +17,13 @@ let lastName = "";
 // app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-app.use(cors());
+const allowedOrigins = ["https://exercise-tracker-capstone.vercel.app"];
+
+app.use(cors({
+    origin: allowedOrigins,
+    optionsSuccessStatus: 200 
+}));
+
 app.use(session({
     secret: 'abcdefg123456',
     resave: false,
