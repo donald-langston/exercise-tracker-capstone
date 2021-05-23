@@ -17,13 +17,18 @@ let lastName = "";
 // app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-const allowedOrigins = ["https://exercise-tracker-capstone.vercel.app"];
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+// const allowedOrigins = ["https://exercise-tracker-capstone.vercel.app"];
 
-app.use(cors({
-    origin: allowedOrigins,
-    allowedHeaders: "content-type",
-    optionsSuccessStatus: 200 
-}));
+// app.use(cors({
+//     origin: allowedOrigins,
+//     allowedHeaders: "content-type",
+//     optionsSuccessStatus: 200 
+// }));
 
 app.use(session({
     secret: 'abcdefg123456',
