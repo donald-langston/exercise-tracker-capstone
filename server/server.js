@@ -14,10 +14,10 @@ let firstName = "";
 let lastName = "";
 
 const isPreFlight = (req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "https://exercise-tracker-capstone.vercel.app");
-    console.log(res);
+    res.header("Access-Control-Allow-Origin", "*");
     if(req.method === 'OPTIONS' && req.headers['origin'] && req.headers['access-control-request-method']) {
         res.header("Access-Control-Allow-Headers", "Origin, Content-Type");
+        res.header("Access-Control-Allow-Methods", "GET, POST");
         return res.status(204).end();
     }
     next();
