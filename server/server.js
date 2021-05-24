@@ -83,8 +83,8 @@ let getFirstAndLastName = function(req, res, next) {
 }
 
 const isPreFlight = (req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "https://exercise-tracker-capstone.vercel.app");
     if(req.method === 'OPTIONS' && req.headers['origin'] && req.headers['access-control-request-method']) {
-        res.header("Access-Control-Allow-Origin", "https://exercise-tracker-capstone.vercel.app");
         res.header("Access-Control-Allow-Headers", "Origin, Content-Type");
         return res.status(204).end();
     }
@@ -92,8 +92,6 @@ const isPreFlight = (req, res, next) => {
 }
 
 app.use(isPreFlight);
-
-// app.options('/login', cors(corsOptions));
 
 app.post('/login', getFirstAndLastName, function(req, res, next) {
     passport.authenticate('local', function(err, user, info) {
