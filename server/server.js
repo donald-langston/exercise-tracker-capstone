@@ -92,9 +92,11 @@ const isPreFlight = (req, res, next) => {
     next();
 }
 
+app.use(isPreFlight);
+
 // app.options('/login', cors(corsOptions));
 
-app.post('/login', isPreFlight, getFirstAndLastName, function(req, res, next) {
+app.post('/login', getFirstAndLastName, function(req, res, next) {
     passport.authenticate('local', function(err, user, info) {
         if (err) { return next(err); }
         if (!user) { return res.status(401).json({message: 'invalid username/password'}); }
