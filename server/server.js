@@ -83,8 +83,8 @@ let getFirstAndLastName = function(req, res, next) {
 }
 
 const isPreFlight = (req, res, next) => {
-    console.log("Preflight ran");
     res.header("Access-Control-Allow-Origin", "https://exercise-tracker-capstone.vercel.app");
+    console.log(res.headers);
     if(req.method === 'OPTIONS' && req.headers['origin'] && req.headers['access-control-request-method']) {
         res.header("Access-Control-Allow-Headers", "Origin, Content-Type");
         return res.status(204).end();
